@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-interface Task {
+export interface Task {
   id: number
   title: string
   description: string
@@ -10,12 +10,12 @@ interface Task {
   assignees: string[]
 }
 
-interface Column {
+export interface Column {
   title: string
   items: Task[]
 }
 
-interface BoardState {
+export interface BoardState {
   columns: {
     [key: string]: Column
   }
@@ -81,11 +81,13 @@ const boardSlice = createSlice({
       const { taskId, fromColumn, toColumn, fromIndex, toIndex } = action.payload
       const task = state.columns[fromColumn].items[fromIndex]
       
-      // Remove from the original position
-      state.columns[fromColumn].items.splice(fromIndex, 1)
-      
-      // Add to the new position
-      state.columns[toColumn].items.splice(toIndex, 0, task)
+      if (task) {
+        // Remove from the original position
+        state.columns[fromColumn].items.splice(fromIndex, 1)
+        
+        // Add to the new position
+        state.columns[toColumn].items.splice(toIndex, 0, task)
+      }
     }
   }
 })

@@ -2,21 +2,7 @@
 
 import { ScrollArea } from "@/components/ui/scroll-area"
 import TaskColumn from './TaskColumn'
-
-interface Task {
-  id: number
-  title: string
-  description: string
-  priority: 'Low' | 'High'
-  comments: number
-  files: number
-  assignees: string[]
-}
-
-interface Column {
-  title: string
-  items: Task[]
-}
+import { Column } from '@/lib/boardSlice'
 
 interface BoardColumnsProps {
   columns: {

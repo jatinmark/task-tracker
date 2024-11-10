@@ -5,16 +5,7 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { MessageSquare, MoreHorizontal } from "lucide-react"
 import { Draggable } from 'react-beautiful-dnd'
-
-interface Task {
-  id: number
-  title: string
-  description: string
-  priority: 'Low' | 'High'
-  comments: number
-  files: number
-  assignees: string[]
-}
+import { Task } from '@/lib/boardSlice'
 
 interface TaskCardProps {
   task: Task

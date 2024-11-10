@@ -4,21 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Plus } from "lucide-react"
 import { Droppable } from 'react-beautiful-dnd'
 import TaskCard from './TaskCard'
-
-interface Task {
-  id: number
-  title: string
-  description: string
-  priority: 'Low' | 'High'
-  comments: number
-  files: number
-  assignees: string[]
-}
-
-interface Column {
-  title: string
-  items: Task[]
-}
+import { Column } from '@/lib/boardSlice'
 
 interface TaskColumnProps {
   columnId: string
