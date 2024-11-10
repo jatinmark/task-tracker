@@ -25,16 +25,13 @@ export default function ProjectBoard() {
       return
     }
 
-    // Moved within the same column
-    if (source.droppableId === destination.droppableId) {
-      return
-    }
-
-    // Moved to a different column
+    // Moved within the same column or to a different column
     dispatch(moveTask({
       taskId: parseInt(result.draggableId),
       fromColumn: source.droppableId,
-      toColumn: destination.droppableId
+      toColumn: destination.droppableId,
+      fromIndex: source.index,
+      toIndex: destination.index
     }))
   }
 

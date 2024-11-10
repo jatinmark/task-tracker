@@ -71,13 +71,21 @@ const boardSlice = createSlice({
   name: 'board',
   initialState,
   reducers: {
-    moveTask: (state, action: PayloadAction<{ taskId: number; fromColumn: string; toColumn: string }>) => {
-      const { taskId, fromColumn, toColumn } = action.payload
-      const taskIndex = state.columns[fromColumn].items.findIndex(task => task.id === taskId)
-      if (taskIndex !== -1) {
-        const [task] = state.columns[fromColumn].items.splice(taskIndex, 1)
-        state.columns[toColumn].items.push(task)
-      }
+    moveTask: (state, action: PayloadAction<{ 
+      taskId: number; 
+      fromColumn: string; 
+      toColumn: string;
+      fromIndex: number;
+      toIndex: number;
+    }>) => {
+      const { taskId, fromColumn, toColumn, fromIndex, toIndex } = action.payload
+      const task = state.columns[fromColumn].items[fromIndex]
+      
+      // Remove from the original position
+      state.columns[fromColumn].items.splice(fromIndex, 1)
+      
+      // Add to the new position
+      state.columns[toColumn].items.splice(toIndex, 0, task)
     }
   }
 })

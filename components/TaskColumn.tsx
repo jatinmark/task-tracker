@@ -27,7 +27,7 @@ interface TaskColumnProps {
 
 export default function TaskColumn({ columnId, column }: TaskColumnProps) {
   return (
-    <div className="flex-1">
+    <div className="flex-1 min-w-[250px]">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <div className={`w-2 h-2 rounded-full ${
@@ -48,11 +48,11 @@ export default function TaskColumn({ columnId, column }: TaskColumnProps) {
         )}
       </div>
       <Droppable droppableId={columnId}>
-        {(provided) => (
+        {(provided, snapshot) => (
           <div 
             {...provided.droppableProps} 
             ref={provided.innerRef}
-            className="space-y-4"
+            className={`space-y-4 min-h-[200px] ${snapshot.isDraggingOver ? 'bg-secondary' : ''}`}
           >
             {column.items.map((task, index) => (
               <TaskCard key={task.id} task={task} index={index} />

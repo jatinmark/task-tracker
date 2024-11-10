@@ -24,11 +24,12 @@ interface TaskCardProps {
 export default function TaskCard({ task, index }: TaskCardProps) {
   return (
     <Draggable draggableId={task.id.toString()} index={index}>
-      {(provided) => (
+      {(provided, snapshot) => (
         <div
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
+          className={`${snapshot.isDragging ? 'opacity-50' : ''}`}
         >
           <Card>
             <CardHeader className="p-4">
